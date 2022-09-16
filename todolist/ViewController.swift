@@ -19,6 +19,18 @@ class ViewController: UIViewController, UITableViewDataSource {
         title = "To Do List"
         view.addSubview(table)
         table.dataSource = self
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(didTapAdd))
+    }
+    
+    @objc private func didTapAdd() {
+        let alert = UIAlertController(title: "New Item", message: "Enter new todo list item", preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Done", style: .default, handler: { (_) in
+            
+        }))
+        
+        present(alert, animated: true)
     }
     
     override func viewDidLayoutSubviews() {
