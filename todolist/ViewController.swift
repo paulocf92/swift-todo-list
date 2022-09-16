@@ -37,8 +37,9 @@ class ViewController: UIViewController, UITableViewDataSource {
                 if let text = field.text, !text.isEmpty {
                     // Enter new todo list item
                     DispatchQueue.main.async {
-                        let newEntry = [text]
-                        UserDefaults.standard.setValue(newEntry, forKey: "items")
+                        var currentItems = UserDefaults.standard.stringArray(forKey: "items") ?? []
+                        currentItems.append(text)
+                        UserDefaults.standard.setValue(currentItems, forKey: "items")
                         self?.items.append(text)
                         self?.table.reloadData()
                     }
